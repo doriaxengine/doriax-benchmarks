@@ -1,0 +1,31 @@
+config_version=5
+
+[application]
+config/name="Lost Slime 3D (Godot port)"
+run/main_scene="res://main.tscn"
+run/flush_stdout_on_print=true
+config/features=PackedStringArray("4.7", "GL Compatibility")
+
+[display]
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/size/window_width_override=1280
+window/size/window_height_override=720
+window/stretch/mode="canvas_items"
+window/vsync/vsync_mode=1
+
+[physics]
+3d/physics_engine="Jolt Physics"
+3d/default_gravity=20.0
+common/physics_ticks_per_second=60
+
+[rendering]
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+textures/default_filters/use_nearest_mipmap_filter=false
+lights_and_shadows/directional_shadow/size=4096
+lights_and_shadows/directional_shadow/16_bits=false
+lights_and_shadows/directional_shadow/soft_shadow_filter_quality=2
+anti_aliasing/quality/msaa_3d=0
+occlusion_culling/use_occlusion_culling=false
+environment/defaults/default_clear_color=Color(0.67, 0.78, 0.94, 1)

@@ -1,0 +1,17 @@
+{
+ "mode": "scenes",
+ "label": "0.8.4-vs-godot-4.7.2/scenes",
+ "items": [
+  "crowd",
+  "island"
+ ],
+ "runs": 5,
+ "warmup": 3,
+ "duration": 20,
+ "cooldown": 3,
+ "max_temp": 70,
+ "cores": "0-5",
+ "doriax": "build/scenes/doriax/doriax-scenes",
+ "godot": "build/scenes/godot-export/scenes.x86_64",
+ "display": "build/display.json"
+}

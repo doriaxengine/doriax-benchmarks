@@ -1,0 +1,27 @@
+{
+ "mode": "suite",
+ "label": "0.8.4-vs-godot-4.7.2/suite",
+ "items": [
+  "sprites_static_3000",
+  "sprites_moving_3000",
+  "sprites_static_10000",
+  "sprites_moving_10000",
+  "sprites_multitex_3000",
+  "cubes_static_1000",
+  "cubes_static_3000",
+  "cubes_moving_1000",
+  "cubes_lit_1000",
+  "cubes_instanced_3000",
+  "models_1000",
+  "models_moving_1000"
+ ],
+ "runs": 5,
+ "warmup": 2,
+ "duration": 8,
+ "cooldown": 3,
+ "max_temp": 70,
+ "cores": "0-5",
+ "doriax": "build/suite/doriax/doriax-suite",
+ "godot": "build/suite/godot-export/suite.x86_64",
+ "display": "build/display.json"
+}

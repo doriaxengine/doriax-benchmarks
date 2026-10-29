@@ -1,0 +1,16 @@
+{
+ "mode": "scenes",
+ "label": "0.8.4-vs-godot-4.7.2/crowd-rested",
+ "items": [
+  "crowd"
+ ],
+ "runs": 5,
+ "warmup": 3,
+ "duration": 20,
+ "cooldown": 60,
+ "max_temp": 70,
+ "cores": "0-5",
+ "doriax": "build/scenes/doriax/doriax-scenes",
+ "godot": "build/scenes/godot-export/scenes.x86_64",
+ "display": "build/display.json"
+}

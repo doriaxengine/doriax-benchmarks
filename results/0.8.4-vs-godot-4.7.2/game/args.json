@@ -1,0 +1,17 @@
+{
+ "mode": "game",
+ "label": "0.8.4-vs-godot-4.7.2/game",
+ "items": [
+  "Level One",
+  "Level Two"
+ ],
+ "runs": 5,
+ "warmup": 5,
+ "duration": 20,
+ "cooldown": 3,
+ "max_temp": 70,
+ "cores": "0-5",
+ "doriax": "build/game/doriax/LostSlime3D",
+ "godot": "build/game/godot-export/LostSlime3D.x86_64",
+ "display": "build/display.json"
+}

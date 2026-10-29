@@ -1,0 +1,24 @@
+config_version=5
+
+[application]
+config/name="Doriax vs Godot Scenes"
+run/main_scene="res://main.tscn"
+run/flush_stdout_on_print=true
+
+[audio]
+driver/driver="Dummy"
+
+[display]
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/size/resizable=false
+window/vsync/vsync_mode=0
+
+[rendering]
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+textures/canvas_textures/default_texture_filter=1
+textures/default_filters/use_nearest_mipmap_filter=false
+anti_aliasing/quality/msaa_2d=0
+anti_aliasing/quality/msaa_3d=0
+anti_aliasing/quality/screen_space_aa=0
