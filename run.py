@@ -20,6 +20,7 @@ import selectors
 import signal
 import statistics
 import subprocess
+import sys
 import time
 from pathlib import Path
 
@@ -52,9 +53,13 @@ def status_mib(pid, key):
 
 
 def pkg_temp():
+    """CPU package temperature in C, 0 when there is no sensor to read."""
     for zone in Path("/sys/class/thermal").glob("thermal_zone*"):
         if (zone / "type").read_text().strip() == "x86_pkg_temp":
             return int((zone / "temp").read_text()) / 1000
+    for mon in Path("/sys/class/hwmon").glob("hwmon*"):  # AMD
+        if (mon / "name").read_text().strip() in ("k10temp", "zenpower") and (mon / "temp1_input").exists():
+            return int((mon / "temp1_input").read_text()) / 1000
     return 0.0
 
 
@@ -91,7 +96,8 @@ def display_env(args):
 
 
 def launch(cmd, env, output, args):
-    """Runs one process until it reports BENCH_MEASURE_END; returns its row and its output."""
+    """Runs one process until it reports BENCH_MEASURE_END; returns its row and data. Its output goes
+    next to the result, as .log, whether the run worked or not."""
     start = time.monotonic()
     while pkg_temp() > args.max_temp and time.monotonic() - start < 600:
         time.sleep(1)
@@ -131,6 +137,7 @@ def launch(cmd, env, output, args):
             os.killpg(proc.pid, signal.SIGKILL)  # Godot exports ignore SIGTERM
         proc.wait()
         sel.close()
+        output.with_suffix(".log").write_bytes(bytes(log))
     if error:
         raise RuntimeError(error)
     if begin is None or end is None or not output.exists():
@@ -142,25 +149,35 @@ def launch(cmd, env, output, args):
     if "script_ms" in data:
         row["script_ms"] = statistics.fmean(data["script_ms"])
         row["engine_ms"] = row["frame_ms"] - row["script_ms"]
-    return row, data, bytes(log)
+    return row, data
+
+
+def expected_positions(spec, case, t):
+    """Where the objects of a stress test are at time t, None when the engine does not report them."""
+    if case["kind"] != "sprites":
+        return None if case["instanced"] else [c[:3] for c in spec["cubes"][:case["count"]]]
+    m = spec["motion"]
+    out = []
+    for x, y, phase in spec["sprites"][:case["count"]]:
+        if case["moving"]:
+            x += m["x_amplitude"] * math.sin(m["angular_speed"] * t + phase)
+            y += m["y_amplitude"] * math.cos(m["angular_speed"] * t + phase)
+        out.append([x, y, 0])
+    return out
 
 
 def check_suite(data, spec, case):
     """Both engines must have drawn the same objects in the same places."""
     if data["count"] != case["count"] or data["resolution"] != [1280, 720]:
         raise RuntimeError(f"count {data['count']}, resolution {data['resolution']}")
-    if case["kind"] != "sprites":
-        return
-    m = spec["motion"]
     for t, key in ((0, "positions_t0"), (1, "positions_t1")):
-        expected = []
-        for x, y, phase in spec["sprites"][:case["count"]]:
-            if case["moving"]:
-                x += m["x_amplitude"] * math.sin(m["angular_speed"] * t + phase)
-                y += m["y_amplitude"] * math.cos(m["angular_speed"] * t + phase)
-            expected.append([x, y, 0])
+        expected = expected_positions(spec, case, t)
+        if expected is None:
+            continue
+        if len(data[key]) != len(expected):
+            raise RuntimeError(f"{key}: {len(data[key])} positions, expected {len(expected)}")
         worst = max(abs(a - b) for g, e in zip(data[key], expected) for a, b in zip(g, e))
-        if len(data[key]) != len(expected) or worst > 2e-3:
+        if worst > 2e-3:
             raise RuntimeError(f"{key} off by {worst}")
 
 
@@ -168,7 +185,8 @@ def main():
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("mode", choices=MODES)
     p.add_argument("--label", default=datetime.datetime.now().strftime("%Y%m%d-%H%M%S"))
-    p.add_argument("--scene", "--level", "--case", dest="items", nargs="+", help="default: all of the mode")
+    p.add_argument("--scene", "--level", "--case", dest="items", nargs="+", metavar="NAME",
+                   help="the scenes, levels or cases to run (default: all of the mode)")
     p.add_argument("--runs", type=int, default=5)
     p.add_argument("--warmup", type=float, help="seconds before measuring (default per mode)")
     p.add_argument("--duration", type=float, help="seconds measured (default per mode)")
@@ -182,6 +200,9 @@ def main():
 
     mode = MODES[args.mode]
     items = args.items or mode["items"]
+    unknown = [i for i in items if i not in mode["items"]]
+    if unknown:
+        raise SystemExit(f"unknown {', '.join(unknown)}; {args.mode} has: {', '.join(mode['items'])}")
     args.warmup = mode["warmup"] if args.warmup is None else args.warmup
     args.duration = mode["duration"] if args.duration is None else args.duration
     binaries = {"doriax": args.doriax or mode["doriax"], "godot": args.godot or mode["godot"]}
@@ -194,8 +215,11 @@ def main():
 
     out = ROOT / "results" / args.label
     (out / "raw").mkdir(parents=True, exist_ok=True)
-    (out / "args.json").write_text(json.dumps({**vars(args), "doriax": str(binaries["doriax"]),
-                                               "godot": str(binaries["godot"])}, indent=1))
+    # paths inside the repository are saved relative to it, so published results hold no home folder
+    files = {**binaries, **({"display": Path(args.display)} if args.display else {})}
+    shown = {k: str(v.resolve().relative_to(ROOT)) if v.resolve().is_relative_to(ROOT) else v.name
+             for k, v in files.items()}
+    (out / "args.json").write_text(json.dumps({**vars(args), "items": items, **shown}, indent=1))
     env = display_env(args)
     rows = []
     for index in range(args.runs):
@@ -206,19 +230,18 @@ def main():
                 output = out / "raw" / f"{stem}.json"
                 cmd, extra = command(args.mode, engine, binaries[engine], item, output, args)
                 try:
-                    row, data, log = launch(cmd, {**env, **extra}, output, args)
+                    row, data = launch(cmd, {**env, **extra}, output, args)
                     if spec:
                         check_suite(data, spec, cases[item])
                 except RuntimeError as e:
                     print(f"FAILED {stem}: {e}", flush=True)
                     rows.append({"engine": engine, key: item, "run": index, "error": str(e)})
                 else:
-                    (out / "raw" / f"{stem}.log").write_bytes(log)
                     rows.append({"engine": engine, key: item, "run": index, **row})
                     print(f"{stem:34s} {row['fps']:8.1f} FPS  1% low {row['low1_fps']:7.1f}  cpu {row['cpu_ms']:.3f} ms"
                           f"  rss {row['rss_mib']:.0f} MiB  {row['temp_start']:.0f}->{row['temp_end']:.0f} C", flush=True)
                 (out / "runs.json").write_text(json.dumps(rows, indent=1))
-    subprocess.run(["python3", str(ROOT / "summary.py"), str(out)])
+    subprocess.run([sys.executable, str(ROOT / "summary.py"), str(out)])
 
 
 if __name__ == "__main__":

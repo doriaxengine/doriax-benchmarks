@@ -49,8 +49,8 @@ var look_finger = -1
 var touch_shown = false
 var touch_previous = {}
 var dust_mesh: Mesh
-# Doriax divides light intensity by pi and Godot multiplies directional energy by
-# pi, so the authored intensity 4.0 matches about 4.0 * 0.32 here.
+# For the same number Godot's sun is about pi times brighter than Doriax's, so the
+# authored intensity 4.0 is scaled by 0.32 (about 1 / pi) here.
 # Pass --light-scale 1.0 to inspect unchanged authored directional energy.
 var light_scale = 0.32
 var shown_lives = -1

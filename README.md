@@ -33,7 +33,7 @@ time and memory, and every run.
 
 ## Running it
 
-You need Linux with X11 or Xwayland, Python 3, git, rsync, the
+You need Linux with X11 or Xwayland, Python 3, git, the
 [Doriax build dependencies](https://docs.doriax.org/building/linux/), and
 [Godot 4.7.2](https://godotengine.org/download/archive/4.7.2-stable/) with its export templates.
 

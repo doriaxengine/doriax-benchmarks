@@ -1,9 +1,8 @@
 # Lost Slime 3D in both engines
 
 The Doriax side is the original game, [doriaxengine/lostslime3d](https://github.com/doriaxengine/lostslime3d)
-at commit `9be674c`. `build.sh` clones it, exports a copy with the Doriax editor (the export rewrites the
-project it reads, so the clone stays untouched), adds `doriax/benchmark.cpp` to the exported project and
-turns VSync off before building it in Release.
+at commit `9be674c`. `build.sh` clones it, exports that commit with the Doriax editor, adds
+`doriax/benchmark.cpp` to the exported project and turns VSync off before building it in Release.
 
 `godot/` is a port of the same game to Godot 4.7.2 (Compatibility renderer, GDScript, Jolt physics). It is
 a complete game you can play: open `godot/project.godot` in Godot and press F5, or start a level directly
@@ -17,7 +16,7 @@ lights, cameras, physics bodies, areas, UI, sounds and animations. `player.gd` a
 original C++ game code rewritten in GDScript. Movement constants, capsule size, gravity, platforms, camera
 distance and field of view, and pickups all come from the original.
 
-You can check that the port's data and assets match the original byte for byte:
+You can check that the port's levels match the original and that its assets are the same files:
 
 ```
 git clone https://github.com/doriaxengine/lostslime3d.git
@@ -32,12 +31,12 @@ rendering and animation blending. A few settings were chosen to match Doriax:
 * Mesh LOD is off in both engines.
 * Godot's 4096 x 4096 directional shadow atlas gives each of its four cascades 2048 x 2048 texels, the
   same as Doriax per cascade.
-* Doriax divides light intensity by pi and Godot multiplies directional energy by pi, so the benchmark
-  runs Godot with `--light-scale 0.32` to get the same light. Run it with `-- --light-scale 1.0` to see the
-  authored energy instead.
+* For the same number, Godot's sun is about pi times brighter than Doriax's, so the benchmark runs Godot
+  with `--light-scale 0.32` (about 1 / pi) to get the same light. Run it with `-- --light-scale 1.0` to see
+  the authored energy instead.
 
-`godot -- --smoke-test` (headless) plays through both levels with scripted input to check movement,
-pickups, keys, checkpoints, damage, pause and the level flow.
+`godot --headless --path godot -- --smoke-test` plays through both levels with scripted input to check
+movement, pickups, keys, checkpoints, damage, pause and the level flow.
 
 ## The benchmark
 

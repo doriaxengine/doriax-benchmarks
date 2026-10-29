@@ -6,8 +6,9 @@
 # DORIAX     a checkout of github.com/doriaxengine/doriax (tag v0.8.4)
 # GODOT      the official Godot 4.7.2 Linux binary, with the 4.7.2 export templates installed
 # EDITOR     an existing doriax-editor binary of the same version (default: built into build/editor)
-# LOSTSLIME  a checkout of github.com/doriaxengine/lostslime3d (default: cloned into build/lostslime3d)
-set -euo pipefail
+# LOSTSLIME  a clone of github.com/doriaxengine/lostslime3d (default: cloned into build/lostslime3d); the
+#            game is read from commit 9be674c, so the clone itself is left as it is
+set -Eeuo pipefail
 ROOT=$(cd "$(dirname "$0")" && pwd)
 B=$ROOT/build
 : "${DORIAX:?set DORIAX to a Doriax checkout}"
@@ -24,13 +25,16 @@ SHADERS="blit depth depth:Tex,Ams mesh:Puc,Nor,Tan,Aop mesh:Puc,Nor,Tan,Aop,Dlo 
     ui:Tex,Vc4 underwater water"
 mkdir -p "$B"
 
+LOG=$B/build.log
 step() { echo "== $*"; }
+trap 'echo "failed, the output is in $LOG"' ERR
 
 editor() {
     [ -x "$EDITOR" ] && return
     step "Doriax editor"
-    cmake -S "$DORIAX" -B "$B/editor" -DCMAKE_BUILD_TYPE=Release > "$B/editor.log"
-    cmake --build "$B/editor" -j "$JOBS" >> "$B/editor.log"
+    LOG=$B/editor.log
+    cmake -S "$DORIAX" -B "$B/editor" -DCMAKE_BUILD_TYPE=Release > "$LOG"
+    cmake --build "$B/editor" -j "$JOBS" >> "$LOG"
 }
 
 # a small Doriax program (scenes or suite), its Godot twin and the files both read
@@ -43,18 +47,20 @@ pair() {
     python3 "$ROOT/$name/gen.py" "$B/$name/godot"
 
     step "$name: Doriax"
+    LOG=$B/$name/doriax.log
     cmake -S "$DORIAX/engine" -B "$B/$name/doriax" -DCMAKE_BUILD_TYPE=Release -DPROJECT_ROOT="$ROOT/$name/doriax" \
-        -DAPP_NAME="doriax-$name" -DGRAPHIC_BACKEND=glcore $WINDOW > "$B/$name/doriax.log"
-    cmake --build "$B/$name/doriax" -j "$JOBS" >> "$B/$name/doriax.log"
+        -DAPP_NAME="doriax-$name" -DGRAPHIC_BACKEND=glcore $WINDOW > "$LOG"
+    cmake --build "$B/$name/doriax" -j "$JOBS" >> "$LOG"
     mkdir -p "$B/$name/doriax/assets/shaders"
     "$EDITOR" shaders --out "$B/$name/doriax/assets/shaders" --backend opengl \
-        $(for s in $SHADERS; do echo --shader "$s"; done) >> "$B/$name/doriax.log" 2>&1
+        $(for s in $SHADERS; do echo --shader "$s"; done) >> "$LOG" 2>&1
 
     step "$name: Godot"
+    LOG=$B/$name/godot.log
     mkdir -p "$B/$name/godot-export"
-    "$GODOT" --headless --path "$B/$name/godot" --import > "$B/$name/godot.log" 2>&1 || true
+    "$GODOT" --headless --path "$B/$name/godot" --import > "$LOG" 2>&1 || true
     "$GODOT" --headless --path "$B/$name/godot" --export-release "Linux Release" "$B/$name/godot-export/$name.x86_64" \
-        >> "$B/$name/godot.log" 2>&1
+        >> "$LOG" 2>&1
 }
 
 game() {
@@ -62,25 +68,26 @@ game() {
         step "game: cloning Lost Slime 3D"
         git clone -q https://github.com/doriaxengine/lostslime3d.git "$LOSTSLIME"
     fi
-    git -C "$LOSTSLIME" -c advice.detachedHead=false checkout -q "$LOSTSLIME_COMMIT"
 
-    # the export writes into the project it reads, so it gets a copy
+    # the export writes into the project it reads, so it works on a copy of the commit
     step "game: Doriax export"
+    LOG=$B/game/doriax.log
     rm -rf "$B/game/project" "$B/game/source"
-    mkdir -p "$B/game"
-    rsync -a --exclude=.git --exclude=workspaces --exclude=.doriax "$LOSTSLIME/" "$B/game/project/"
-    "$EDITOR" export --project "$B/game/project" --out "$B/game/source" --backend opengl > "$B/game/doriax.log" 2>&1
+    mkdir -p "$B/game/project"
+    git -C "$LOSTSLIME" archive "$LOSTSLIME_COMMIT" | tar -x -C "$B/game/project"
+    "$EDITOR" export --project "$B/game/project" --out "$B/game/source" --backend opengl > "$LOG" 2>&1
     cp "$ROOT/game/doriax/benchmark.cpp" "$ROOT/game/doriax/ProjectBuild.cmake" "$B/game/source/project/"
     sed -i 's/set(DORIAX_VSYNC_ENABLED ON)/set(DORIAX_VSYNC_ENABLED OFF)/' "$B/game/source/CMakeLists.txt"
     step "game: Doriax build"
-    cmake -S "$B/game/source" -B "$B/game/doriax" -DCMAKE_BUILD_TYPE=Release >> "$B/game/doriax.log"
-    cmake --build "$B/game/doriax" -j "$JOBS" >> "$B/game/doriax.log"
+    cmake -S "$B/game/source" -B "$B/game/doriax" -DCMAKE_BUILD_TYPE=Release >> "$LOG"
+    cmake --build "$B/game/doriax" -j "$JOBS" >> "$LOG"
 
     step "game: Godot"
+    LOG=$B/game/godot.log
     mkdir -p "$B/game/godot-export"
-    "$GODOT" --headless --path "$ROOT/game/godot" --import > "$B/game/godot.log" 2>&1 || true
+    "$GODOT" --headless --path "$ROOT/game/godot" --import > "$LOG" 2>&1 || true
     "$GODOT" --headless --path "$ROOT/game/godot" --export-release "Linux Release" \
-        "$B/game/godot-export/LostSlime3D.x86_64" >> "$B/game/godot.log" 2>&1
+        "$B/game/godot-export/LostSlime3D.x86_64" >> "$LOG" 2>&1
 }
 
 targets=${*:-scenes suite game}
