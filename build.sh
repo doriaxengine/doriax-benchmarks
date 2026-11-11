@@ -3,7 +3,7 @@
 #
 #   DORIAX=~/src/doriax GODOT=~/bin/Godot_v4.7.2-stable_linux.x86_64 ./build.sh [editor|scenes|suite|game ...]
 #
-# DORIAX     a checkout of github.com/doriaxengine/doriax (tag v0.8.4)
+# DORIAX     a checkout of github.com/doriaxengine/doriax (tag v0.8.4 or later)
 # GODOT      the official Godot 4.7.2 Linux binary, with the 4.7.2 export templates installed
 # EDITOR     an existing doriax-editor binary of the same version (default: built into build/editor)
 # LOSTSLIME  a clone of github.com/doriaxengine/lostslime3d (default: cloned into build/lostslime3d); the
@@ -75,6 +75,10 @@ game() {
     rm -rf "$B/game/project" "$B/game/source"
     mkdir -p "$B/game/project"
     git -C "$LOSTSLIME" archive "$LOSTSLIME_COMMIT" | tar -x -C "$B/game/project"
+    # after 0.8.4 setVisible leaves the children's flags alone and setVisibleOnly is gone
+    if ! grep -q setVisibleOnly "$DORIAX/engine/core/object/Object.h"; then
+        sed -i 's/\.setVisibleOnly(/.setVisible(/' "$B/game/project/scripts/PlayerController.cpp"
+    fi
     "$EDITOR" export --project "$B/game/project" --out "$B/game/source" --backend opengl > "$LOG" 2>&1
     cp "$ROOT/game/doriax/benchmark.cpp" "$ROOT/game/doriax/ProjectBuild.cmake" "$B/game/source/project/"
     sed -i 's/set(DORIAX_VSYNC_ENABLED ON)/set(DORIAX_VSYNC_ENABLED OFF)/' "$B/game/source/CMakeLists.txt"
