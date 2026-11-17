@@ -1,0 +1,542 @@
+[
+ {
+  "scene": "Arena",
+  "lang": "off",
+  "rep": 1,
+  "load": 5.04736328125,
+  "seconds": 0.3,
+  "ok": true,
+  "median_ms": 0.0753
+ },
+ {
+  "scene": "Arena",
+  "lang": "lua",
+  "rep": 1,
+  "load": 5.04736328125,
+  "seconds": 0.5,
+  "ok": true,
+  "median_ms": 0.3471
+ },
+ {
+  "scene": "Arena",
+  "lang": "cpp",
+  "rep": 1,
+  "load": 4.64306640625,
+  "seconds": 0.3,
+  "ok": true,
+  "median_ms": 0.1093
+ },
+ {
+  "scene": "Crowd",
+  "lang": "off",
+  "rep": 1,
+  "load": 4.27099609375,
+  "seconds": 21.5,
+  "ok": true,
+  "median_ms": 12.13525
+ },
+ {
+  "scene": "Crowd",
+  "lang": "lua",
+  "rep": 1,
+  "load": 3.2275390625,
+  "seconds": 48.9,
+  "ok": true,
+  "median_ms": 32.9169
+ },
+ {
+  "scene": "Crowd",
+  "lang": "cpp",
+  "rep": 1,
+  "load": 1.88427734375,
+  "seconds": 25.7,
+  "ok": true,
+  "median_ms": 15.3458
+ },
+ {
+  "scene": "Paths",
+  "lang": "off",
+  "rep": 1,
+  "load": 1.52880859375,
+  "seconds": 0.5,
+  "ok": true,
+  "median_ms": 0.3384
+ },
+ {
+  "scene": "Paths",
+  "lang": "lua",
+  "rep": 1,
+  "load": 1.52880859375,
+  "seconds": 4.0,
+  "ok": true,
+  "median_ms": 4.74915
+ },
+ {
+  "scene": "Paths",
+  "lang": "cpp",
+  "rep": 1,
+  "load": 1.3671875,
+  "seconds": 1.0,
+  "ok": true,
+  "median_ms": 0.9948
+ },
+ {
+  "scene": "Rays",
+  "lang": "off",
+  "rep": 1,
+  "load": 1.25732421875,
+  "seconds": 0.3,
+  "ok": true,
+  "median_ms": 0.1315
+ },
+ {
+  "scene": "Rays",
+  "lang": "lua",
+  "rep": 1,
+  "load": 1.25732421875,
+  "seconds": 7.1,
+  "ok": true,
+  "median_ms": 9.56105
+ },
+ {
+  "scene": "Rays",
+  "lang": "cpp",
+  "rep": 1,
+  "load": 1.21728515625,
+  "seconds": 1.1,
+  "ok": true,
+  "median_ms": 1.2110500000000002
+ },
+ {
+  "scene": "Arena",
+  "lang": "cpp",
+  "rep": 2,
+  "load": 1.11962890625,
+  "seconds": 0.3,
+  "ok": true,
+  "median_ms": 0.1071
+ },
+ {
+  "scene": "Arena",
+  "lang": "lua",
+  "rep": 2,
+  "load": 1.02978515625,
+  "seconds": 0.5,
+  "ok": true,
+  "median_ms": 0.3389
+ },
+ {
+  "scene": "Arena",
+  "lang": "off",
+  "rep": 2,
+  "load": 1.02978515625,
+  "seconds": 0.3,
+  "ok": true,
+  "median_ms": 0.07955000000000001
+ },
+ {
+  "scene": "Crowd",
+  "lang": "cpp",
+  "rep": 2,
+  "load": 0.947265625,
+  "seconds": 25.3,
+  "ok": true,
+  "median_ms": 14.910499999999999
+ },
+ {
+  "scene": "Crowd",
+  "lang": "lua",
+  "rep": 2,
+  "load": 0.95556640625,
+  "seconds": 44.7,
+  "ok": true,
+  "median_ms": 32.2403
+ },
+ {
+  "scene": "Crowd",
+  "lang": "off",
+  "rep": 2,
+  "load": 1.0224609375,
+  "seconds": 20.8,
+  "ok": true,
+  "median_ms": 10.949000000000002
+ },
+ {
+  "scene": "Paths",
+  "lang": "cpp",
+  "rep": 2,
+  "load": 0.99169921875,
+  "seconds": 1.0,
+  "ok": true,
+  "median_ms": 0.9261
+ },
+ {
+  "scene": "Paths",
+  "lang": "lua",
+  "rep": 2,
+  "load": 0.912109375,
+  "seconds": 4.0,
+  "ok": true,
+  "median_ms": 4.63945
+ },
+ {
+  "scene": "Paths",
+  "lang": "off",
+  "rep": 2,
+  "load": 0.91943359375,
+  "seconds": 0.5,
+  "ok": true,
+  "median_ms": 0.3727
+ },
+ {
+  "scene": "Rays",
+  "lang": "cpp",
+  "rep": 2,
+  "load": 0.845703125,
+  "seconds": 1.1,
+  "ok": true,
+  "median_ms": 1.2125499999999998
+ },
+ {
+  "scene": "Rays",
+  "lang": "lua",
+  "rep": 2,
+  "load": 0.77783203125,
+  "seconds": 7.0,
+  "ok": true,
+  "median_ms": 9.3239
+ },
+ {
+  "scene": "Rays",
+  "lang": "off",
+  "rep": 2,
+  "load": 0.892578125,
+  "seconds": 0.3,
+  "ok": true,
+  "median_ms": 0.1316
+ },
+ {
+  "scene": "Arena",
+  "lang": "off",
+  "rep": 3,
+  "load": 0.892578125,
+  "seconds": 0.3,
+  "ok": true,
+  "median_ms": 0.0805
+ },
+ {
+  "scene": "Arena",
+  "lang": "lua",
+  "rep": 3,
+  "load": 0.9013671875,
+  "seconds": 0.5,
+  "ok": true,
+  "median_ms": 0.3445
+ },
+ {
+  "scene": "Arena",
+  "lang": "cpp",
+  "rep": 3,
+  "load": 0.8291015625,
+  "seconds": 0.3,
+  "ok": true,
+  "median_ms": 0.1097
+ },
+ {
+  "scene": "Crowd",
+  "lang": "off",
+  "rep": 3,
+  "load": 0.8291015625,
+  "seconds": 20.9,
+  "ok": true,
+  "median_ms": 11.00195
+ },
+ {
+  "scene": "Crowd",
+  "lang": "lua",
+  "rep": 3,
+  "load": 0.88818359375,
+  "seconds": 44.8,
+  "ok": true,
+  "median_ms": 32.2442
+ },
+ {
+  "scene": "Crowd",
+  "lang": "cpp",
+  "rep": 3,
+  "load": 0.87255859375,
+  "seconds": 25.4,
+  "ok": true,
+  "median_ms": 15.0408
+ },
+ {
+  "scene": "Paths",
+  "lang": "off",
+  "rep": 3,
+  "load": 0.9169921875,
+  "seconds": 0.5,
+  "ok": true,
+  "median_ms": 0.34485
+ },
+ {
+  "scene": "Paths",
+  "lang": "lua",
+  "rep": 3,
+  "load": 0.84326171875,
+  "seconds": 4.0,
+  "ok": true,
+  "median_ms": 4.7038
+ },
+ {
+  "scene": "Paths",
+  "lang": "cpp",
+  "rep": 3,
+  "load": 0.85595703125,
+  "seconds": 1.0,
+  "ok": true,
+  "median_ms": 0.98795
+ },
+ {
+  "scene": "Rays",
+  "lang": "off",
+  "rep": 3,
+  "load": 0.86767578125,
+  "seconds": 0.3,
+  "ok": true,
+  "median_ms": 0.1311
+ },
+ {
+  "scene": "Rays",
+  "lang": "lua",
+  "rep": 3,
+  "load": 0.7978515625,
+  "seconds": 7.2,
+  "ok": true,
+  "median_ms": 9.89885
+ },
+ {
+  "scene": "Rays",
+  "lang": "cpp",
+  "rep": 3,
+  "load": 0.7490234375,
+  "seconds": 1.0,
+  "ok": true,
+  "median_ms": 1.1386500000000002
+ },
+ {
+  "scene": "Arena",
+  "lang": "cpp",
+  "rep": 4,
+  "load": 0.68896484375,
+  "seconds": 0.3,
+  "ok": true,
+  "median_ms": 0.1076
+ },
+ {
+  "scene": "Arena",
+  "lang": "lua",
+  "rep": 4,
+  "load": 0.68896484375,
+  "seconds": 0.5,
+  "ok": true,
+  "median_ms": 0.32115
+ },
+ {
+  "scene": "Arena",
+  "lang": "off",
+  "rep": 4,
+  "load": 0.71435546875,
+  "seconds": 0.3,
+  "ok": true,
+  "median_ms": 0.0801
+ },
+ {
+  "scene": "Crowd",
+  "lang": "cpp",
+  "rep": 4,
+  "load": 0.65673828125,
+  "seconds": 25.3,
+  "ok": true,
+  "median_ms": 15.037600000000001
+ },
+ {
+  "scene": "Crowd",
+  "lang": "lua",
+  "rep": 4,
+  "load": 0.77490234375,
+  "seconds": 44.7,
+  "ok": true,
+  "median_ms": 32.47025
+ },
+ {
+  "scene": "Crowd",
+  "lang": "off",
+  "rep": 4,
+  "load": 0.82373046875,
+  "seconds": 21.0,
+  "ok": true,
+  "median_ms": 11.19895
+ },
+ {
+  "scene": "Paths",
+  "lang": "cpp",
+  "rep": 4,
+  "load": 0.80419921875,
+  "seconds": 1.0,
+  "ok": true,
+  "median_ms": 0.9738
+ },
+ {
+  "scene": "Paths",
+  "lang": "lua",
+  "rep": 4,
+  "load": 0.73974609375,
+  "seconds": 4.0,
+  "ok": true,
+  "median_ms": 4.806850000000001
+ },
+ {
+  "scene": "Paths",
+  "lang": "off",
+  "rep": 4,
+  "load": 0.68017578125,
+  "seconds": 0.5,
+  "ok": true,
+  "median_ms": 0.3734
+ },
+ {
+  "scene": "Rays",
+  "lang": "cpp",
+  "rep": 4,
+  "load": 0.62548828125,
+  "seconds": 1.0,
+  "ok": true,
+  "median_ms": 1.1527500000000002
+ },
+ {
+  "scene": "Rays",
+  "lang": "lua",
+  "rep": 4,
+  "load": 0.62548828125,
+  "seconds": 7.2,
+  "ok": true,
+  "median_ms": 9.82215
+ },
+ {
+  "scene": "Rays",
+  "lang": "off",
+  "rep": 4,
+  "load": 0.6962890625,
+  "seconds": 0.3,
+  "ok": true,
+  "median_ms": 0.1418
+ },
+ {
+  "scene": "Arena",
+  "lang": "off",
+  "rep": 5,
+  "load": 0.6962890625,
+  "seconds": 0.3,
+  "ok": true,
+  "median_ms": 0.0812
+ },
+ {
+  "scene": "Arena",
+  "lang": "lua",
+  "rep": 5,
+  "load": 0.64013671875,
+  "seconds": 0.5,
+  "ok": true,
+  "median_ms": 0.34950000000000003
+ },
+ {
+  "scene": "Arena",
+  "lang": "cpp",
+  "rep": 5,
+  "load": 0.5888671875,
+  "seconds": 0.3,
+  "ok": true,
+  "median_ms": 0.10775000000000001
+ },
+ {
+  "scene": "Crowd",
+  "lang": "off",
+  "rep": 5,
+  "load": 0.5888671875,
+  "seconds": 20.7,
+  "ok": true,
+  "median_ms": 10.9007
+ },
+ {
+  "scene": "Crowd",
+  "lang": "lua",
+  "rep": 5,
+  "load": 0.64990234375,
+  "seconds": 46.0,
+  "ok": true,
+  "median_ms": 32.45995
+ },
+ {
+  "scene": "Crowd",
+  "lang": "cpp",
+  "rep": 5,
+  "load": 0.7685546875,
+  "seconds": 25.2,
+  "ok": true,
+  "median_ms": 14.7678
+ },
+ {
+  "scene": "Paths",
+  "lang": "off",
+  "rep": 5,
+  "load": 0.8486328125,
+  "seconds": 0.5,
+  "ok": true,
+  "median_ms": 0.37065
+ },
+ {
+  "scene": "Paths",
+  "lang": "lua",
+  "rep": 5,
+  "load": 0.7802734375,
+  "seconds": 3.9,
+  "ok": true,
+  "median_ms": 4.6662
+ },
+ {
+  "scene": "Paths",
+  "lang": "cpp",
+  "rep": 5,
+  "load": 0.79833984375,
+  "seconds": 1.0,
+  "ok": true,
+  "median_ms": 0.98985
+ },
+ {
+  "scene": "Rays",
+  "lang": "off",
+  "rep": 5,
+  "load": 0.81494140625,
+  "seconds": 0.3,
+  "ok": true,
+  "median_ms": 0.1276
+ },
+ {
+  "scene": "Rays",
+  "lang": "lua",
+  "rep": 5,
+  "load": 0.74951171875,
+  "seconds": 7.1,
+  "ok": true,
+  "median_ms": 9.3509
+ },
+ {
+  "scene": "Rays",
+  "lang": "cpp",
+  "rep": 5,
+  "load": 0.78173828125,
+  "seconds": 1.1,
+  "ok": true,
+  "median_ms": 1.211
+ }
+]

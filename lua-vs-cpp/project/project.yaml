@@ -1,0 +1,44 @@
+name: LuaVsCpp
+canvasWidth: 1920
+canvasHeight: 1080
+scalingMode: letterbox
+textureStrategy: none
+vsync: false
+windowMode: windowed
+windowWidth: 1920
+windowHeight: 1080
+windowResizable: true
+assetsDir: assets
+luaDir: lua
+scriptDirs:
+  - scripts
+export:
+  shaderAdditions:
+    - type: points
+      properties: 4
+startSceneId: 1753659802
+standaloneBundles:
+  - assets/arena/Player_Lua.bundle
+  - assets/arena/Enemy_Lua.bundle
+  - assets/arena/Player_Cpp.bundle
+  - assets/arena/Enemy_Cpp.bundle
+  - assets/arena/Player_Off.bundle
+  - assets/arena/Enemy_Off.bundle
+  - assets/crowd/Cube_Lua.bundle
+  - assets/crowd/Cube_Cpp.bundle
+  - assets/crowd/Cube_Off.bundle
+  - assets/paths/Wall.bundle
+  - assets/paths/Agent.bundle
+  - assets/paths/Paths_Lua.bundle
+  - assets/paths/Paths_Cpp.bundle
+  - assets/paths/Paths_Off.bundle
+  - assets/rays/Pillar.bundle
+  - assets/rays/Rays_Lua.bundle
+  - assets/rays/Rays_Cpp.bundle
+  - assets/rays/Rays_Off.bundle
+scenes:
+  - filepath: scenes/Boot.scene
+  - filepath: scenes/Arena.scene
+  - filepath: scenes/Crowd.scene
+  - filepath: scenes/Paths.scene
+  - filepath: scenes/Rays.scene

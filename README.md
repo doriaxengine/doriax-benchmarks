@@ -1,12 +1,13 @@
 # Doriax benchmarks
 
-Performance tests of [Doriax](https://github.com/doriaxengine/doriax) against other engines, with
-everything needed to run them yourself: the test projects for each engine, the build and run scripts,
-and the raw data of every published run.
+Performance tests of [Doriax](https://github.com/doriaxengine/doriax), against other engines and
+between its own options, with everything needed to run them yourself: the test projects, the build
+and run scripts, and the raw data of every published run.
 
 | Benchmark | Results |
 | --- | --- |
 | Doriax 0.8.4 vs Godot 4.7.2 (October 2026) | [results/0.8.4-vs-godot-4.7.2](results/0.8.4-vs-godot-4.7.2) |
+| Lua vs C++ scripts in Doriax 0.8.5 (November 2026) | [lua-vs-cpp](lua-vs-cpp) |
 
 ## Doriax 0.8.4 vs Godot 4.7.2
 

@@ -1,0 +1,38 @@
+type: Entity
+entity: 1001
+name: Rays
+components:
+  transform:
+    position: [0, 0, 0]
+    rotation: [1, 0, 0, 0]
+    scale: [1, 1, 1]
+    worldPosition: [0, 0, 0]
+    worldRotation: [1, 0, 0, 0]
+    worldScale: [1, 1, 1]
+    localMatrix: [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]]
+    modelMatrix: [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]]
+    normalMatrix: [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]]
+    visible: true
+    billboardRotation: [1, 0, 0, 0]
+    billboard: false
+    fakeBillboard: false
+    cylindricalBillboard: false
+  script:
+    scripts:
+      - type: cpp
+        path: scripts/Rays.cpp
+        headerPath: scripts/Rays.h
+        className: Rays
+        enabled: true
+        properties:
+          - name: rayCount
+            displayName: Ray Count
+            type: Int
+            value: 2000
+            defaultValue: 2000
+          - name: simulate
+            displayName: Simulate
+            type: Bool
+            value: false
+            defaultValue: true
+visibilityInherited: true

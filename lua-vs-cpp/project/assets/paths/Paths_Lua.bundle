@@ -1,0 +1,42 @@
+type: Entity
+entity: 1001
+name: Paths
+components:
+  transform:
+    position: [0, 0, 0]
+    rotation: [1, 0, 0, 0]
+    scale: [1, 1, 1]
+    worldPosition: [0, 0, 0]
+    worldRotation: [1, 0, 0, 0]
+    worldScale: [1, 1, 1]
+    localMatrix: [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]]
+    modelMatrix: [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]]
+    normalMatrix: [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]]
+    visible: true
+    billboardRotation: [1, 0, 0, 0]
+    billboard: false
+    fakeBillboard: false
+    cylindricalBillboard: false
+  script:
+    scripts:
+      - type: lua
+        path: Paths.lua
+        className: Paths
+        enabled: true
+        properties:
+          - name: agentCount
+            displayName: Agent Count
+            type: Int
+            value: 400
+            defaultValue: 400
+          - name: searchesPerFrame
+            displayName: Searches Per Frame
+            type: Int
+            value: 80
+            defaultValue: 80
+          - name: simulate
+            displayName: Simulate
+            type: Bool
+            value: true
+            defaultValue: true
+visibilityInherited: true

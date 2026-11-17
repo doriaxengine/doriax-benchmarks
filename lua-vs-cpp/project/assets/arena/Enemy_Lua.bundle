@@ -1,0 +1,148 @@
+type: Entity
+entity: 1001
+name: Enemy
+components:
+  transform:
+    position: [0, 0, 0]
+    rotation: [1, 0, 0, 0]
+    scale: [1, 1, 1]
+    worldPosition: [0, 0, 0]
+    worldRotation: [1, 0, 0, 0]
+    worldScale: [0.8, 0.8, 0.8]
+    localMatrix: [[0.8, 0, 0, 0], [0, 0.8, 0, 0], [0, 0, 0.8, 0], [0, 0, 0, 1]]
+    modelMatrix: [[0.8, 0, 0, 0], [0, 0.8, 0, 0], [0, 0, 0.8, 0], [0, 0, 0, 1]]
+    normalMatrix: [[1.25, 0, 0, 0], [0, 1.25, 0, 0], [0, 0, 1.25, 0], [0, 0, 0, 1]]
+    visible: true
+    billboardRotation: [1, 0, 0, 0]
+    billboard: false
+    fakeBillboard: false
+    cylindricalBillboard: false
+  mesh:
+    buffer:
+      type: vertex_buffer
+      usage: immutable
+      stride: 48
+      size: 1152
+      count: 24
+      renderAttributes: true
+      instanceBuffer: false
+      attributes:
+        - type: position
+          dataType: float
+          bufferName: ""
+          elements: 3
+          offset: 0
+          count: 24
+          normalized: true
+          perInstance: false
+        - type: texcoord1
+          dataType: float
+          bufferName: ""
+          elements: 2
+          offset: 12
+          count: 24
+          normalized: true
+          perInstance: false
+        - type: normal
+          dataType: float
+          bufferName: ""
+          elements: 3
+          offset: 20
+          count: 24
+          normalized: true
+          perInstance: false
+        - type: color
+          dataType: float
+          bufferName: ""
+          elements: 4
+          offset: 32
+          count: 24
+          normalized: true
+          perInstance: false
+      data: AAAAvwAAAL8AAAA/AAAAAAAAgD8AAAAAAAAAAAAAgD8AAIA/AACAPwAAgD8AAIA/AAAAPwAAAL8AAAA/AACAPwAAgD8AAAAAAAAAAAAAgD8AAIA/AACAPwAAgD8AAIA/AAAAPwAAAD8AAAA/AACAPwAAAAAAAAAAAAAAAAAAgD8AAIA/AACAPwAAgD8AAIA/AAAAvwAAAD8AAAA/AAAAAAAAAAAAAAAAAAAAAAAAgD8AAIA/AACAPwAAgD8AAIA/AAAAvwAAAL8AAAC/AAAAAAAAgD8AAAAAAAAAAAAAgL8AAIA/AACAPwAAgD8AAIA/AAAAPwAAAL8AAAC/AACAPwAAgD8AAAAAAAAAAAAAgL8AAIA/AACAPwAAgD8AAIA/AAAAPwAAAD8AAAC/AACAPwAAAAAAAAAAAAAAAAAAgL8AAIA/AACAPwAAgD8AAIA/AAAAvwAAAD8AAAC/AAAAAAAAAAAAAAAAAAAAAAAAgL8AAIA/AACAPwAAgD8AAIA/AAAAvwAAAL8AAAA/AAAAAAAAgD8AAIC/AAAAAAAAAAAAAIA/AACAPwAAgD8AAIA/AAAAvwAAAD8AAAA/AAAAAAAAAAAAAIC/AAAAAAAAAAAAAIA/AACAPwAAgD8AAIA/AAAAvwAAAD8AAAC/AACAPwAAAAAAAIC/AAAAAAAAAAAAAIA/AACAPwAAgD8AAIA/AAAAvwAAAL8AAAC/AACAPwAAgD8AAIC/AAAAAAAAAAAAAIA/AACAPwAAgD8AAIA/AAAAPwAAAL8AAAA/AAAAAAAAgD8AAIA/AAAAAAAAAAAAAIA/AACAPwAAgD8AAIA/AAAAPwAAAD8AAAA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AACAPwAAgD8AAIA/AAAAPwAAAD8AAAC/AACAPwAAAAAAAIA/AAAAAAAAAAAAAIA/AACAPwAAgD8AAIA/AAAAPwAAAL8AAAC/AACAPwAAgD8AAIA/AAAAAAAAAAAAAIA/AACAPwAAgD8AAIA/AAAAvwAAAD8AAAA/AAAAAAAAgD8AAAAAAACAPwAAAAAAAIA/AACAPwAAgD8AAIA/AAAAPwAAAD8AAAA/AACAPwAAgD8AAAAAAACAPwAAAAAAAIA/AACAPwAAgD8AAIA/AAAAPwAAAD8AAAC/AACAPwAAAAAAAAAAAACAPwAAAAAAAIA/AACAPwAAgD8AAIA/AAAAvwAAAD8AAAC/AAAAAAAAAAAAAAAAAACAPwAAAAAAAIA/AACAPwAAgD8AAIA/AAAAvwAAAL8AAAA/AAAAAAAAAAAAAAAAAACAvwAAAAAAAIA/AACAPwAAgD8AAIA/AAAAPwAAAL8AAAA/AACAPwAAAAAAAAAAAACAvwAAAAAAAIA/AACAPwAAgD8AAIA/AAAAPwAAAL8AAAC/AACAPwAAgD8AAAAAAACAvwAAAAAAAIA/AACAPwAAgD8AAIA/AAAAvwAAAL8AAAC/AAAAAAAAgD8AAAAAAACAvwAAAAAAAIA/AACAPwAAgD8AAIA/
+      vertexSize: 48
+    indices:
+      type: index_buffer
+      usage: immutable
+      stride: 2
+      size: 72
+      count: 36
+      renderAttributes: true
+      instanceBuffer: false
+      attributes:
+        - type: index
+          dataType: unsigned_short
+          bufferName: ""
+          elements: 1
+          offset: 0
+          count: 36
+          normalized: true
+          perInstance: false
+      data: AAABAAIAAAACAAMABAAGAAUABAAHAAYACAAJAAoACAAKAAsADAAOAA0ADAAPAA4AEAARABIAEAASABMAFAAWABUAFAAXABYA
+    submeshes:
+      - material:
+          baseColorFactor: [0.8932889, 0.070740275, 0.047366142, 1]
+          metallicFactor: 1
+          roughnessFactor: 1
+          alphaCutoff: 0.5
+          foliageTransmission: 0
+          alphaMode: AUTO
+          emissiveFactor: [0, 0, 0]
+          baseColorTexCoord: 0
+          metallicRoughnessTexCoord: 0
+          occlusionTexCoord: 0
+          emissiveTexCoord: 0
+          normalTexCoord: 0
+          name: ""
+        textureRect: [0, 0, 1, 1]
+        primitiveType: triangles
+        vertexCount: 36
+        faceCulling: true
+        textureShadow: false
+        overrideFields: 1
+        hasTexCoord1: true
+        hasTexCoord2: false
+        hasNormalMap: false
+        hasTangent: false
+        hasVertexColor3: false
+        hasVertexColor4: true
+        hasTextureRect: false
+        hasSkinning: false
+        hasMorphTarget: false
+        hasMorphNormal: false
+        hasMorphTangent: false
+    normAdjustJoint: 1
+    normAdjustWeight: 1
+    aabb:
+      min: [-0.5, -0.5, -0.5]
+      max: [0.5, 0.5, 0.5]
+    verticesAABB:
+      min: [-0.5, -0.5, -0.5]
+      max: [0.5, 0.5, 0.5]
+    worldAABB:
+      min: [-0.4, -0.4, -0.4]
+      max: [0.4, 0.4, 0.4]
+    receiveLights: true
+    receiveIBL: false
+    castShadows: true
+    receiveShadows: true
+    lodEnabled: true
+    lodBias: 1
+    renderInReflectionProbes: true
+    shadowsBillboard: true
+    transparent: false
+    cullingMode: back
+    windingOrder: ccw
+  script:
+    scripts:
+      - type: lua
+        path: Enemy.lua
+        className: Enemy
+        enabled: true
+        properties:
+          - name: speed
+            displayName: Speed
+            type: Float
+            value: 4
+            defaultValue: 4
+visibilityInherited: true
